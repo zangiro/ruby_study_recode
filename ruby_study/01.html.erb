@@ -1,0 +1,25 @@
+rubyメモ
+
+lines = $stdin.readlines.map(&:chomp)
+
+towns = lines[0].to_i
+stay_time = lines[1..towns].map{|a|a.to_i}
+move_time = lines[1 + towns..towns + towns].map{|b|b.split.map{|c|c.to_i}}
+
+how_visit_count = lines[1 + towns + towns].to_i
+how_visit = lines[2 + towns + towns..1 + towns + towns + how_visit_count].map{|d|d.to_i}
+index = 0
+total = 0
+
+how_visit_count.times do
+  n = how_visit[index]
+  count_1 = stay_time[n - 1]
+  total += count_1
+  if how_visit[index + 1]
+    next_town = how_visit[index + 1]
+    count_2 = move_time[n - 1][next_town - 1]
+    total += count_2
+  end
+  index += 1
+end
+
