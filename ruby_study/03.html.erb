@@ -1,0 +1,38 @@
+lines = $stdin.readlines.map(&:chomp)
+
+first = lines[0].split[0]
+hugou = lines[0].split[1]
+second = lines[0].split[2]
+third = lines[0].split[4]
+answer = 0
+
+if first == "x"
+  second = second.to_i
+  third = third.to_i
+  if hugou == "+"
+    answer = third - second
+  else
+    answer = third + second
+  end
+end
+
+
+if second == "x"
+  first = first.to_i
+  third = third.to_i
+  if hugou == "+"
+    answer = third - first
+  else
+    answer = first - third
+  end
+end
+
+if third == "x"
+  first = first.to_i
+  second = second.to_i
+  if hugou == "+"
+    answer = first + second
+  else
+    answer = first - second
+  end
+end
