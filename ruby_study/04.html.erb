@@ -1,0 +1,27 @@
+lines = $stdin.readlines.map{|word|word.chomp}
+
+how_many = lines[0].split[0].to_i
+target = lines[0].split[1].to_i
+order = lines[1..how_many].map{|a|a.to_i}
+
+box = []
+
+while target >= 1
+  check = target % 2
+  target = target / 2
+  if check == 1
+    box << 1
+  else
+    box << 0
+  end
+end
+
+order.each do |o|
+  puts box[o - 1]
+
+
+end
+
+
+
+
