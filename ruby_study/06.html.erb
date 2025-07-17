@@ -1,0 +1,106 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+a5 = lines[0].split[0].to_i
+comic = lines[0].split[1].to_i
+mini_comic = lines[0].split[2].to_i
+tana_count = lines[1].to_i
+tana_array = lines[2..(1 + tana_count)].map{|a|a.split.map{|b|b.to_i}}
+# [[1000, 40, 20, 40], [800, 30, 30, 30], [1200, 100, 0, 0]]
+
+index = 0
+answer_list = []
+
+tana_array.each do |tana|
+  a5_box = tana[1]
+  comic_box = tana[2]
+  mini_comic_box = tana[3]
+  if a5_box >= a5
+    a5_box -= a5
+    comic_box += a5_box
+    if comic_box >= comic
+      comic_box -= comic
+      mini_comic_box += comic_box
+      if mini_comic_box >= mini_comic
+        answer_list << tana[0]
+      end
+    end
+  end
+end
+
+if answer_list == []
+  puts "-1"
+else
+  puts answer_list.min
+end
+
+
+
+lines = $stdin.readlines.map{|a|a.chomp}
+humans = lines[0].to_i
+array = lines[1..humans].map{|a|a.to_i}
+point_array = array.sort.reverse
+
+array.each do |arr|
+  target = point_array.index(arr)
+  puts target + 1
+end
+
+
+
+lines = $stdin.readlines.map(&:chomp)
+humans = lines[0].to_i
+array = lines[1..humans].map(&:to_i)
+point_array = array.uniq.sort.reverse
+
+rank_hash = point_array.each_with_index.to_h  # 得点とその順位をハッシュにする
+
+array.each do |arr|
+  puts rank_hash[arr] + 1  # ハッシュから順位を取得
+end
+
+
+
+
+
+
+lines = $stdin.readlines.map(&:chomp)
+humans = lines[0].to_i
+array = lines[1..humans].map(&:to_i)
+point_array = array.uniq.sort.reverse
+
+rank_hash = {}
+rank = 1
+
+point_array.each_with_index do |score, index|
+  # 重複している得点の場合は同じ順位を設定
+  if index > 0 && score == point_array[index - 1]
+    rank_hash[score] = rank_hash[point_array[index - 1]]
+  else
+    rank_hash[score] = rank
+  end
+  rank += 1
+end
+
+array.each do |arr|
+  puts rank_hash[arr]  # ハッシュから順位を取得
+end
+
+
+
+lines = $stdin.readlines.map(&:chomp)
+humans = lines[0].to_i
+array = lines[1..humans].map(&:to_i)
+point_array = array.sort.reverse
+
+rank_hash = {}
+rank = 1
+
+point_array.each_with_index do |score, index|
+  # 重複している得点の場合は同じ順位を設定
+  if index > 0 && score == point_array[index - 1]
+    rank_hash[score] = rank_hash[point_array[index - 1]]
+  else
+    rank_hash[score] = rank
+  end
+  rank += 1
+end
+p rank_hash
