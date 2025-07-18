@@ -1,0 +1,83 @@
+x = [1,2,3,4,5]
+
+x.each do |x_1|
+  x.each do |x_2|
+    x.each do |x_3|
+      if x_1 != x_2 && x_1 != x_3 && x_2 != x_3
+        a = [x_1, x_2, x_3]
+        b = a.sort
+        p b
+      end
+    end
+  end
+end
+
+
+
+arr = []
+x.each do |x_1|
+  x.each do |x_2|
+    x.each do |x_3|
+      if x_1 != x_2 && x_1 != x_3 && x_2 != x_3
+        a = [x_1, x_2, x_3]
+        b = a.sort
+        unless arr.include?(b)
+          arr << b
+        end
+      end
+    end
+  end
+end
+
+
+[[1, 2, 3], [1, 2, 4], [1, 2, 5],
+ [1, 3, 4], [1, 3, 5], [1, 4, 5],
+  [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5]]
+
+
+
+
+lines = $stdin.readlines.map{|a|a.chomp}
+bentou_type =     lines[0].split[0].to_i
+limit_carorie =   lines[0].split[1].to_i
+calorie_array =   lines[1].split.map{|b|b.to_i}
+happiness_array = lines[2].split.map{|b|b.to_i}
+food_array =      lines[3].split.map{|b|b.to_i}
+
+arr = []
+(0..(bentou_type - 1)).each do |x_1|
+  (0..(bentou_type - 1)).each do |x_2|
+    (0..(bentou_type - 1)).each do |x_3|
+      if x_1 != x_2 && x_1 != x_3 && x_2 != x_3
+        a = [x_1, x_2, x_3]
+        b = a.sort
+        unless arr.include?(b)
+          arr << b
+        end
+      end
+    end
+  end
+end
+
+# p arr
+#[[0, 1, 2], [0, 1, 3], [0, 1, 4], [0, 2, 3],
+# [0, 2, 4], [0, 3, 4], [1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]]
+answer_list = []
+
+arr.each do |a,b,c|
+  total_calorie = calorie_array[a] + calorie_array[b] + calorie_array[c]
+  food_type_a = food_array[a]
+  food_type_b = food_array[b]
+  food_type_c = food_array[c]
+  total_happiness = happiness_array[a] + happiness_array[b] + happiness_array[c]
+
+  if limit_carorie >= total_calorie && food_type_a != food_type_b && food_type_a != food_type_c && food_type_b != food_type_c
+    answer_list << total_happiness
+  end
+end
+
+if answer_list == []
+  puts "-1"
+else
+  puts answer_list.max
+end
