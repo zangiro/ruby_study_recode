@@ -1,0 +1,91 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+hight =     lines[0].split[0].to_i
+width =     lines[0].split[1].to_i
+start_y =   lines[1].split[0].to_i
+start_x =   lines[1].split[1].to_i
+map_array_before_converce = lines[2..(hight + 1)].map{|a|a.chars}
+# ["###.###", "#...###", "#.#...#", "#.###.#", "#...#.#", "#.#.#.#", "#.#.#.#"]
+#=>
+# [["#", "#", "#", ".", "#", "#", "#"], ["#", ".", ".", ".", "#", "#", "#"]. . . .
+
+map_array = map_array_before_converce.map { |a|a.map{|item| item == "#" ? 1 : item == "." ? 2 : item} }
+
+# [[1, 1, 1, 2, 1, 1, 1], [1, 2, 2, 2, 1, 1, 1], [1, 2, 1, 2, 2, 2, 1], [1, 2, 1, 1, 1,.......
+
+map_array[start_y - 1][start_x - 1] = 5
+# [1, 1, 1, 5, 1, 1, 1]....
+
+index = 0
+current_location = nil
+answer = 0
+should_break = false
+(hight - 1).times do
+  while map_array[index].include?(5)
+    if current_location == nil
+      current_location = map_array[index].index(5)       # map_array[0][current_location]
+    end
+
+    if current_location > 0 &&    map_array[index][current_location - 1] == 2   # 左側に道があるなら
+      map_array[index][current_location] = 9
+      map_array[index][current_location - 1] = 5
+      current_location -= 1
+    elsif current_location < map_array[index].length - 1 &&    map_array[index][current_location + 1] == 2   # 右側に道があるなら
+      map_array[index][current_location] = 9
+      map_array[index][current_location + 1] = 5
+      current_location += 1
+    elsif map_array[index + 1][current_location] == 2      # 左右に道がないなら下に下る
+      map_array[index + 1][current_location] = 5
+      map_array[index][current_location] = 9
+      answer = "#{(index + 2)} #{(current_location + 1)}"
+    else
+      answer = "#{(index + 1)} #{current_location + 1}"
+      should_break = true
+      break
+    end
+  end
+  break if should_break
+  index += 1
+end
+
+puts answer
+
+
+
+
+
+
+
+
+
+array = [[0, 1, 1, 2, 1, 1, 1],[0,0,0,1,2,0,0]]
+
+loop do
+  index = array.index(2)
+  break unless index # 2が見つからなければループを終了
+
+  if index > 0 && array[index - 1] == 1
+    array[index - 1] = 2 # 左側の1を2に変換
+    array[index] = 3     # 元の2の位置に3を代入
+  else
+    puts "左側に1はありません"
+    break
+  end
+end
+
+puts array.inspect
+
+array = [0, 1, 1, 2, 1, 1, 1]
+
+while array.include(2)
+  index = array.index(2)
+
+  if index > 0 && array[index - 1] == 1
+    array[index - 1] = 2 
+    array[index] = 3
+  else
+    array[index] = 3
+    puts "左側に1はありません"
+  end
+end
+
+puts array.inspect
