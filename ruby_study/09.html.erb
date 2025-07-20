@@ -1,0 +1,63 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+number = lines[0].to_i
+hight = (number.to_s.length) / 3
+array = Array.new(hight * 3) { Array.new(9, ".") }
+
+index = 0
+y_axis = 0
+
+
+hight.times do
+x_axis = 0
+
+3.times do
+  target_string = number.to_s[index]
+  target = target_string.to_i
+
+  if target >= 9
+    array[(y_axis + 2)][(x_axis + 2)] = "#"
+  end
+
+  if target >= 8
+    array[(y_axis + 2)][(x_axis + 1)] = "#"
+  end
+
+  if target >= 7
+    array[(y_axis + 2)][x_axis] = "#"
+  end
+
+  if target >= 6
+    array[(y_axis + 1)][(x_axis + 2)] = "#"
+  end
+
+  if target >= 5
+    array[(y_axis + 1)][(x_axis + 1)] = "#"
+  end
+
+  if target >= 4
+    array[(y_axis + 1)][x_axis] = "#"
+  end
+
+  if target >= 3
+    array[y_axis][(x_axis + 2)] = "#"
+  end
+
+  if target >= 2
+    array[y_axis][(x_axis + 1)] = "#"
+  end
+
+  if target >= 1
+    array[y_axis][x_axis] = "#"
+  end
+  index += 1
+  x_axis += 3
+end
+y_axis += 3
+end
+
+new_array = array.map{|arr|arr.join}
+puts new_array
+
+
+
+
