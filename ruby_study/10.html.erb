@@ -11,4 +11,42 @@ y = total % amount
 if y > 0
   x += 1
 end
-p x
+{1=>{:count=>4, :cost=>18200}, 2=>{:count=>0, :cost=>0}, 3=>{:count=>1, :cost=>2000},
+ 4=>{:count=>1, :cost=>5000}, 5=>{:count=>2, :cost=>3200}, 6=>{:count=>0, :cost=>0},
+  7=>{:count=>2, :cost=>7000}, 8=>{:count=>0, :cost=>0}, 9=>{:count=>3, :cost=>13200},
+   10=>{:count=>1, :cost=>5000}}
+
+lines = $stdin.readlines.map{|a|a.chomp}
+book_type = lines[0].split[0].to_i
+how_week = lines[0].split[1].to_i
+array = lines[1..book_type]
+# ["2 2000", "3 5000", "4 1200", "8 10000"]
+hash = {}
+(1..how_week).each do |nn|
+  hash[nn] = { count: 0, cost: 0 }
+end
+  
+index = 0
+book_type.times do
+  day = array[index].split[0].to_i
+  amount = array[index].split[1].to_i
+  today = 1
+  while today <= how_week
+    hash[today][:count] += 1 
+    hash[today][:cost] += amount 
+    today += day
+  end
+  index += 1
+end
+total = 0
+hash.each do |key, info|
+  count = info[:count]
+  cost = info[:cost]
+  if count == 2
+    hash[key][:cost] -= (info[:cost] * 0.1).floor
+  elsif count >= 3
+    hash[key][:cost] -= (info[:cost] * 0.15).floor
+  end
+  total += hash[key][:cost]
+end
+p total
