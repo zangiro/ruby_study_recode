@@ -1,0 +1,55 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+original = lines[0].split[0]
+terms = lines[0].split[1].chars
+# ["+", "+", "-", "+", . . . .
+conversion = nil
+
+while original != conversion
+  if conversion == nil
+    conversion = original
+  end
+  new_conversion_array = conversion.chars
+  test_array = new_conversion_array
+  index = 0
+
+  10.times do
+    if index == 0
+      left_index = 9
+      right_index = index + 1
+    elsif index == 9
+      left_index = index - 1
+      right_index = 0
+    else
+      left_index = index - 1
+      right_index = index + 1
+    end
+
+    if new_conversion_array[left_index] == "-" && new_conversion_array[right_index] == "-"
+      test_array[index] = terms[0] #+
+    elsif new_conversion_array[left_index] == "-" && new_conversion_array[right_index] == "+"
+      test_array[index] = terms[1] #-
+    elsif new_conversion_array[left_index] == "+" && new_conversion_array[right_index] == "-"
+      test_array[index] = terms[2] #-
+    else
+      test_array[index] = terms[3] #+
+    end
+    index += 1
+  end
+  conversion = test_array.join
+end
+
+if original == conversion
+  puts "OK"
+end
+
++
+-
+-
++
+
+
++ + - + - - + + + -  オリジナル
+- - + +
+
+
+- + + - + + + + - +
