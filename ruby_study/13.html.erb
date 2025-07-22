@@ -1,0 +1,18 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+humans = lines[0].to_i
+array = lines[1..humans]
+x = 0
+y = 0
+z = 0
+
+if array.include?("rock") && array.include?("paper") && array.include?("scissors")
+  puts "DROW"
+elsif array.include?("rock") && array.include?("paper")
+  puts "paper"
+elsif array.include?("rock") && array.include?("scissors")
+  puts "rock"
+elsif array.include?("paper") && array.include?("scissors")
+  puts "scissors"
+else
+  puts "DROW"
+end
