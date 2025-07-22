@@ -1,0 +1,51 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+hight = lines[0].split[0].to_i
+width = lines[0].split[1].to_i
+how_many = lines[1].to_i
+array = lines[2..how_many + 1]
+map = Array.new(hight) { Array.new(width, 0) }
+
+array.each_with_index do |arr , index|  # "3 3 2" 0     "1 6 1" 1 ...
+  free_fall = arr.split[0].to_i
+  distance_from_center = free_fall / 2
+  x_axis = (arr.split[1].to_i) - 1
+  y_axis = (arr.split[2].to_i) - 1
+
+  if free_fall == 1
+    map[y_axis][x_axis] += 1
+  else
+    how_many_y = 1
+    map[y_axis][x_axis - distance_from_center] += 1 if (x_axis - distance_from_center) >= 0
+    map[y_axis][x_axis + distance_from_center] += 1 if (x_axis + distance_from_center) <= (width - 1)
+    distance_from_center.times do
+      if (x_axis - distance_from_center) >= 0
+        map[y_axis + how_many_y][x_axis - distance_from_center] += 1 if (y_axis + how_many_y) <= (hight - 1)
+        map[y_axis - how_many_y][x_axis - distance_from_center] += 1 if (y_axis - how_many_y) >= 0
+      end
+      if (x_axis + distance_from_center) <= (width - 1)
+        map[y_axis + how_many_y][x_axis + distance_from_center] += 1 if (y_axis + how_many_y) <= (hight - 1)
+        map[y_axis - how_many_y][x_axis + distance_from_center] += 1 if (y_axis - how_many_y) >= 0
+      end
+      how_many_y += 1
+    end
+
+    how_many_x = 1
+    map[y_axis - distance_from_center][x_axis] += 1 if (y_axis - distance_from_center) >= 0
+    map[y_axis + distance_from_center][x_axis] += 1 if (y_axis + distance_from_center) <= (hight - 1)
+    (distance_from_center - 1).times do
+      if (y_axis - distance_from_center) >= 0
+        map[y_axis - distance_from_center][x_axis + how_many_x] += 1 if (x_axis + how_many_x) <= (width - 1)
+        map[y_axis - distance_from_center][x_axis - how_many_x] += 1 if (x_axis - how_many_x) >= 0
+      end
+      if (y_axis + distance_from_center) <= (hight - 1)
+        map[y_axis + distance_from_center][x_axis + how_many_x] += 1 if (x_axis + how_many_x) <= (width - 1)
+        map[y_axis + distance_from_center][x_axis - how_many_x] += 1 if (x_axis - how_many_x) >= 0
+      end
+      how_many_x += 1
+    end
+  end
+end
+
+map.each do |ma|
+  ma.join(" ")
+end
