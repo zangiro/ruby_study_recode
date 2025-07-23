@@ -1,0 +1,26 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+max_carry = lines[0].to_i
+how_many_fax = lines[1].to_i
+array = lines[2..how_many_fax + 1].map{|b|b.split.map{|c|c.to_i}}
+# [[3, 20, 70], [3, 40, 170], [3, 59, 90], [4, 5, 55], [4, 25, 40]]
+hash = {}
+array.each do |a,b,c|
+  key = a
+  value = c
+  if hash.key?(key)
+    hash[key] += value
+  else
+    hash[key] = value
+  end
+end
+count = 0
+hash.each do |k, v|
+  how = v % max_carry
+  if how == 0
+    count += v / max_carry
+  else
+    count += v / max_carry + 1
+  end
+end
+
+p count

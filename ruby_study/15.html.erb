@@ -1,0 +1,25 @@
+lines = $stdin.readlines.map{|a|a.chomp}
+humans = lines[0].to_i
+name_array = lines[1].split
+# ["ando", "noda"]
+
+how_many_buy = lines[2].to_i
+buy_info_array = lines[3..2 + how_many_buy]
+# ["noda 1000", "ando 500"]
+
+name_hash = {}
+name_array.each do |name|
+  name_hash[name] = 0
+end
+
+buy_info_array.each do |info|
+  name = info.split[0]
+  amount = info.split[1].to_i
+  hash[name] += amount 
+end
+
+answer = name_hash.sort_by { |key, value| value }.reverse.to_h
+
+answer.each do |key, value|
+  puts key
+end
