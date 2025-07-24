@@ -1,0 +1,36 @@
+制限速度
+lines = $stdin.readlines.map{|a|a.chomp}
+point_count = lines[0].split[0].to_i
+limit = lines[0].split[1].to_i
+info_array = lines[1..point_count].map{|a|a.split.map{|b|b.to_i}}
+if info_array[0] != [0, 0]
+  info_array.insert(0, [0, 0])
+end
+answer = []
+index = 0
+
+(info_array.length - 1).times do
+  now_time = info_array[index][0]
+  next_time = info_array[index + 1][0]
+  now_point = info_array[index][1]
+  next_point = info_array[index + 1][1]
+  if now_time + 1 == next_time
+    result = next_point - now_point
+  else
+    move_time = next_time - now_time
+    move_point = next_point - now_point
+    if move_point % move_time == 0
+      result = move_point / move_time
+    else
+      result = (move_point / move_time) + 1
+    end
+  end
+  answer << result
+  index += 1
+end
+
+if answer.max <= limit
+  puts "OK"
+else
+  puts "NO"
+end
