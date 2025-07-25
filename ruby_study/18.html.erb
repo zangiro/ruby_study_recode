@@ -1,0 +1,35 @@
+ハッシュ関数問題
+lines = $stdin.readlines.map{|a|a.chomp}
+array_lenth = lines[0].split[0].to_i
+how_many_length = lines[0].split[1].to_i
+array = lines[1].chars.map{|a|a.to_i}
+unless array_lenth % how_many_length == 0
+  how_many_add = array_lenth % how_many_length
+  (how_many_length - how_many_add).times do
+    array << 0
+  end
+end
+
+convert_index = 0
+convert_array = []
+how_many_length.times do
+  convert_array << array[convert_index]
+  convert_index += 1
+end
+
+((array.length / how_many_length) - 1).times do
+  convert_array_index = 0
+  how_many_length.times do
+    target_a = convert_array[convert_array_index]
+    target_b = array[convert_index]
+    if target_a == target_b
+      convert_array << 0
+    else
+      convert_array << 1
+    end
+    convert_array_index += 1
+    convert_index += 1
+  end
+  convert_array = convert_array[how_many_length..-1]
+
+end
