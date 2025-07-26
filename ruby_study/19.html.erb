@@ -1,0 +1,54 @@
+踏切が重なってる時間の問題
+rubyの勉強07月26日
+
+
+lines = $stdin.readlines.map{|a|a.chomp}
+train_count = lines[0].split[0].to_i
+fall_time = lines[0].split[1].to_i
+train_time_array = lines[1..train_count].map{|a|a.to_i}
+
+hash = {}
+train_time_array.each do |arr|
+  hash[arr] = {count: 0}
+end
+# {10=>{:count=>5}, 20=>{:count=>5}, 23=>{:count=>0}}
+# {15=>{:count=>10}, 30=>{:count=>10}, 40=>{:count=>20}}
+
+
+hash.each do |time, count|
+  fumikiri_time = time
+  fumikiri_time_ago = fumikiri_time - fall_time
+  while hash.keys.any? { |key| key < fumikiri_time && key >= fumikiri_time_ago }
+    result = hash.select { |key, _| key < fumikiri_time && key >= fumikiri_time_ago }.min_by { |key, _| key }
+    fumikiri_time = result[0]
+    fumikiri_time_ago = fumikiri_time - fall_time
+  end
+  now_time = time
+  hash[time][:count] = now_time - fumikiri_time_ago
+end
+
+max_count_item = hash.max_by { |key, value| value[:count] }
+puts max_count_item[1][:count]
+
+time
+10
+25
+25 
+25
+51
+
+ago
+0
+15
+15
+15
+41
+
+now_tome 
+10, 25, 30, 40, 51
+
+10 - 0
+25 - 15
+30 - 15
+40 - 15
+51 - 41
