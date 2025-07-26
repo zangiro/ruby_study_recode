@@ -1,4 +1,5 @@
 ハッシュ関数問題
+rubyの勉強07月25日
 lines = $stdin.readlines.map{|a|a.chomp}
 array_lenth = lines[0].split[0].to_i
 how_many_length = lines[0].split[1].to_i
@@ -32,4 +33,18 @@ end
   end
   convert_array = convert_array[how_many_length..-1]
 
+end
+
+
+
+
+hash.each do |time, count|
+  fumikiri_time = time
+  fumikiri_time_ago = time - fall_time
+  if hash.keys.any? { |key| key < fumikiri_time && key >= fumikiri_time_ago }
+    result = hash.select { |key, _| key < fumikiri_time && key >= fumikiri_time_ago }.min_by { |key, _| key }
+    p result
+  else
+    p "存在しない"
+  end
 end
