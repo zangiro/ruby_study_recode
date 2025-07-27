@@ -1,0 +1,76 @@
+現在地はどこ？
+rubyの勉強07月27日
+
+
+lines = $stdin.readlines.map{|a|a.chomp}
+width = lines[0].split[0].to_i
+hight = lines[0].split[1].to_i
+how_many_move = lines[0].split[2].to_i
+start_x = lines[1].split[0].to_i
+start_y = lines[1].split[1].to_i
+move_array = lines[2..how_many_move + 1]
+
+map_array = Array.new(hight) { Array.new(width, 0) }
+map_array[start_y][start_x] += 1
+
+position = [start_y, start_x]
+old_position = [start_y, start_x]
+
+move_array.each do |m_array|
+  which = m_array.split[0]
+  how_many = m_array.split[1].to_i
+
+  if which == "U"
+    how_many.times do
+      if position[0] == hight - 1
+        position[0] = 0
+      else
+        position[0] += 1
+      end
+    end
+  elsif which == "D"
+    how_many.times do
+      if position[0] == 0
+        position[0] = hight - 1
+      else
+        position[0] -= 1
+      end
+    end
+  elsif which == "R"
+    how_many.times do
+      if position[1] == width - 1
+        position[1] = 0
+      else
+        position[1] += 1
+      end
+    end
+  elsif which == "L"
+    how_many.times do
+      if position[1] == 0
+        position[1] = width - 1
+      else
+        position[1] -= 1
+      end
+    end
+  end
+  old_y = old_position[0]
+  old_x = old_position[1]
+  new_y = position[0]
+  new_x = position[1]
+  map_array[old_y][old_x] = 0
+  map_array[new_y][new_x] = 1
+
+  old_position = position
+end
+
+p position
+
+
+[[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], 
+ [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+
+
+[[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
