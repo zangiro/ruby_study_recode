@@ -74,3 +74,42 @@ p position
 [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+
+
+
+
+
+  x = [1,2,3,4,5]
+  y = [1,2,4,3,4,5]
+count = 0
+x_index = 0
+x.each_with_index do |xx|
+  y_index = 0
+  y.each_with_index do |yy|
+    if_count = 0
+    if xx == yy
+      target_x = xx
+      target_y = yy
+      now_x_index = x_index
+      now_y_index = y_index
+      while target_x == target_y
+        if now_x_index < (x.length - 1) && now_y_index < (y.length - 1) 
+          now_x_index += 1
+          now_y_index += 1
+          target_x = x[now_x_index]
+          target_y = y[now_y_index]
+        else
+          target_y = nil
+        end
+        if_count += 1
+      end
+
+      if count < if_count
+        count = if_count
+      end
+    end
+
+    y_index += 1
+  end
+  x_index += 1
+end
