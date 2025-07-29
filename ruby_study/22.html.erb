@@ -1,0 +1,57 @@
+ブロック消し
+rubyの勉強07月29日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+hight = lines[0].split[0].to_i
+width = lines[0].split[1].to_i
+how_many_color = lines[0].split[2].to_i
+array = lines[1..hight].map{|a|a.split}
+# [["g", "b", "g", "y", "y"], 
+#  ["g", "r", "b", "y", "g"], 
+#  ["g", "r", "r", "b", "g"]]
+
+#[["#", "b", "g", "#", "#"], 
+# ["#", "#", "b", "#", "#"], 
+# ["#", "#", "#", "b", "#"]]
+
+record_array = Array.new(hight) { Array.new(width, "#") }
+
+array.each_with_index do |arr , y_index|
+  arr.each_with_index do |word, x_index|
+    check = 0
+    if x_index > 0 && word == array[y_index][x_index - 1]
+      check += 1
+    end
+    if x_index < (width - 1) && word == array[y_index][x_index + 1]
+      check += 1
+    end
+    if y_index > 0 && word == array[y_index - 1][x_index]
+      check += 1
+    end
+    if y_index < (hight - 1) && word == array[y_index + 1][x_index]
+      check += 1
+    end
+    
+    if check == 0
+      record_array[y_index][x_index] = word
+    end
+  end
+end
+
+y_index2 = hight - 1
+record_array.reverse.each do |arr2|
+  arr2.each_with_index do |word2, x_index2|
+    unless word2 == "#"
+      now_y_index = y_index2
+      while now_y_index < (hight - 1) && record_array[now_y_index + 1][x_index2] == "#"
+        record_array[now_y_index + 1][x_index2] = word2
+        record_array[now_y_index][x_index2] = "#"
+        now_y_index += 1
+      end
+    end
+  end
+  y_index2 -= 1
+end
+
+answer = record_array.map{|a|a.join(" ")}
