@@ -1,0 +1,36 @@
+背、生まれ、名前ソート
+rubyの勉強07月30日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+human = lines[0].to_i
+info_array = lines[1..human].map{|a|a.split}
+
+
+info_array = [["abc", "11", "1"], ["def", "10", "3"], ["ghi", "10", "2"]]
+
+hash = {}
+info_array.each_with_index do |arr, index|
+  name_array = arr[0].chars
+  height_info = arr[1].to_i
+  born_info = arr[2.to_i]
+  hash[index] = { height: height_info, born: born_info, name: name_array }
+end
+# {0=>{:height=>11, :born=>"1", :name=>["a", "b", "c"]}, 
+#  1=>{:height=>10, :born=>"3", :name=>["d", "e", "f"]}, 
+#  2=>{:height=>10, :born=>"2", :name=>["g", "h", "i"]}}
+height_sort_hash = hash.sort_by { |_, v| v[:height] }.to_h
+
+height_sort_hash.each_with_index do |ha, index|
+  w = ha[1][:height]
+
+
+
+  if 最底辺でないか？　＆＆　すでに検証済みでないか？　＆＆　下の値と比較し検証値が＝か
+end
+
+w = [ "ccc","cca","cac","cc" ]
+word = w.map{|a|a.chars}
+# [["c", "c", "c"], ["c", "c", "a"], ["c", "a", "c"], ["c", "c"]]
+
+word.sort_by { |w| w[0],w[1] }
