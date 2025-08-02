@@ -1,0 +1,25 @@
+株の売買シミュ
+rubyの勉強08月01日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+how_many_buy = lines[0].split[0].to_i
+one_kabu_buy = lines[0].split[1].to_i
+all_kabu_sale = lines[0].split[2].to_i
+info_array = lines[1..how_many_buy].map{|a|a.to_i}
+
+money = 0
+kabu = 0
+info_array.each_with_index do |info, index|
+  if index == (how_many_buy - 1)
+    money += info * kabu
+  elsif info <= one_kabu_buy
+    money -= info
+    kabu += 1
+  elsif info >= all_kabu_sale
+    money += info * kabu
+    kabu = 0
+  end
+end
+
+p money

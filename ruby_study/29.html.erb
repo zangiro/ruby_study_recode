@@ -1,0 +1,37 @@
+黒電話
+rubyの勉強08月02日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+number = lines[0].chars
+count = 0
+
+number.each do |n|
+  word = ""
+  unless n == "-"
+    word = n.to_i
+  end
+
+  if word == 1
+    count += 6
+  elsif word == 2
+    count += 8
+  elsif word == 3
+    count += 10
+  elsif word == 4
+    count += 12
+  elsif word == 5
+    count += 14
+  elsif word == 6
+    count += 16
+  elsif word == 7
+    count += 18
+  elsif word == 8
+    count += 20
+  elsif word == 9
+    count += 22
+  elsif word == 0
+    count += 24
+  end
+end
+

@@ -1,0 +1,26 @@
+約数が完全一致かニアピンか
+rubyの勉強08月01日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+numbers = lines[0].to_i
+number_array = lines[1..numbers].map{|a|a.to_i}
+
+number_array.each do |num|
+  count = 0
+  x = num / 2
+  while x >= 1
+    if num % x == 0
+      count += x
+    end
+    x -= 1
+  end
+
+  if num == count
+    puts "perfect"
+  elsif num == (count + 1) || num == (count - 1)
+    puts "nearly"
+  else
+    puts "neither"
+  end
+end

@@ -1,0 +1,33 @@
+種類ごとにポイント換算
+rubyの勉強08月01日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+type = lines[0].to_i
+item_array = lines[1..type].map{|a|a.split.map{|b|b.to_i}}
+# [[0, 200], [1, 240], [0, 120],...
+eat_count = 0  #0
+book_count = 0  #1
+clothes_count = 0  #2
+other_count = 0  #3
+
+item_array.each do |item|
+  item_number = item[0]
+  item_amount = item[1]
+  if item_number == 0
+    eat_count += item_amount
+  elsif item_number == 1
+    book_count += item_amount
+  elsif item_number == 2
+    clothes_count += item_amount
+  elsif item_number == 3
+    other_count += item_amount
+  end
+end
+
+all_point = 0
+
+all_point += ((eat_count / 100) * 5) #15
++ ((book_count / 100) * 3)   #12
+            + ((clothes_count / 100) * 2) #64
+            + ((other_count / 100) * 1)
