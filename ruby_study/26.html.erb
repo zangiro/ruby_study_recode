@@ -1,0 +1,25 @@
+カードコンプリートシミュ
+rubyの勉強08月01日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+how_many_buy = lines[0].split[0].to_i
+card_type = lines[0].split[1].to_i
+buy_info = lines[1..how_many_buy].map{|a|a.to_i}
+
+hash = {}
+(1..card_type).each_with_index do |num, index|
+  hash[index + 1] = 0
+end
+
+buy_info.each_with_index do |info, index|
+  hash[info] += 1
+  unless hash.value?(0)
+    puts index + 1
+    break
+  end
+end
+
+if hash.value?(0)
+  puts "unlucky"
+end

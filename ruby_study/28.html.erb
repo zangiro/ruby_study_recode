@@ -1,0 +1,21 @@
+対象の数字抜きの番号
+rubyの勉強08月02日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+number = lines[0].to_i
+room = lines[1].to_i
+room_array = lines[2..room + 1]
+test = 0
+
+room_array.each do |arr|
+  n = arr.chars.map{|a|a.to_i}
+  unless n.include?(number)
+    puts arr
+    test += 1
+  end
+end
+
+if test == 0
+  puts "none"
+end

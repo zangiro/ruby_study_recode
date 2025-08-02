@@ -1,0 +1,32 @@
+質の良い人参
+rubyの勉強08月02日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+ninzin = lines[0].split[0].to_i
+main_data = lines[0].split[1].to_i
+plus_or_minus = lines[0].split[2].to_i
+array = lines[1..ninzin].map{|a|a.split.map{|b|b.to_i}}
+# [[8, 10], [7, 6], [7, 4]]
+
+hash = {}
+array.each_with_index do |arr, index|
+  hash[(index + 1)] = {no: (index + 1) ,big: arr[0], amasa: arr[1], check: 0}
+end
+
+hash.each do |key, value|
+  border = value[:amasa] - plus_or_minus
+  limit = value[:amasa] + plus_or_minus
+  if border <= main_data && limit >= main_data
+    value[:check] += 1
+  end
+end
+
+if hash.any? { |_, value| value[:check] == 1 }
+  filtered_hash = hash.select { |key, value| value[:check] == 1 }
+  key = filtered_hash.keys.first
+
+  p filtered_hash[key][:no]
+else
+  puts "not found"
+end
