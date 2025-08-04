@@ -1,0 +1,37 @@
+メダルと順位
+rubyの勉強08月04日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+humans = lines[0].to_i
+sanka_array = lines[1].split.map{|a|a.to_i}
+# [100, 70, 90, 80, 95]
+sorted_array = sanka_array.sort.reverse
+# [100, 95, 90, 80, 70]
+gold = sorted_array[0]
+
+if sorted_array.count(gold) == 1
+  silver = sorted_array[1]
+else
+  silver = nil
+end
+
+if sorted_array.count(gold) >= 3
+  bronz = nil
+elsif silver == nil || sorted_array.count(silver) == 1
+  bronz = sorted_array[2]
+else
+  bronz = nil
+end
+
+sanka_array.each do |arr|
+  if arr == gold
+    puts "G"
+  elsif arr == silver
+    puts "S"
+  elsif arr == bronz
+    puts "B"
+  else
+    puts "N"
+  end
+end
