@@ -1,0 +1,52 @@
+番号の組み合わせ
+rubyの勉強08月05日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+cards = lines[0].to_i
+numbers = lines[1].split.map{|a|a.to_i}
+answer = -Float::INFINITY
+
+(0...cards).each do |first|
+  (0...cards).each do |second|
+    next if second == first
+    total = nil
+    (0...cards).each do |num|
+      if total == nil && num == first
+        total = numbers[num] + 1
+      elsif total == nil
+        total = numbers[num]
+      elsif num == first
+        total *= (numbers[num] + 1)
+      elsif num == second
+        total *= (numbers[num] - 1)
+      else
+        total *= numbers[num]
+      end
+    end
+
+    if answer < total
+      answer = total
+    end
+  end
+end
+
+
+
+
+
+
+
+
+
+(1..3).each do |first|
+  (1..3).each do |second|
+    next if second == first
+    puts "先頭は#{first}。後ろは#{second}"
+  end
+end
+
+
+(1..5).each do |n|
+  p n
+end
