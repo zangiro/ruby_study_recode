@@ -1,0 +1,79 @@
+レース
+rubyの勉強08月06日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+race_count = lines[0].split[0].to_i
+score_calculation = lines[0].split[1].to_i
+first_horse = lines[1..race_count].map{|a|a.to_i}
+second_horse = lines[(1 + race_count)..(race_count + race_count)].map{|a|a.to_i}
+third_horse = lines[(race_count + race_count + 1)..(race_count + race_count + race_count)].map{|a|a.to_i}
+# [3, 5, 1, 12, 3]
+
+
+first_index = 0
+first_horse_rank = Float::INFINITY
+while (first_index + score_calculation) <= race_count
+  first_horse_total = 0
+  now = first_index
+  score_calculation.times do
+    first_horse_total += first_horse[now]
+    now += 1
+  end
+  first_horse_total_ver2 = first_horse_total.to_f
+  first_horse_total_ver2 /= score_calculation
+  if first_horse_rank > first_horse_total_ver2
+    first_horse_rank = first_horse_total_ver2
+  end
+  first_index += 1
+end
+
+
+second_index = 0
+second_horse_rank = Float::INFINITY
+while (second_index + score_calculation) <= race_count
+  second_horse_total = 0
+  now = second_index
+  score_calculation.times do
+    second_horse_total += second_horse[now]
+    now += 1
+  end
+  second_horse_total_ver2 = second_horse_total.to_f
+  second_horse_total_ver2 /= score_calculation
+  if second_horse_rank > second_horse_total_ver2
+    second_horse_rank = second_horse_total_ver2
+  end
+  second_index += 1
+end
+
+
+third_index = 0
+third_horse_rank = Float::INFINITY
+while (third_index + score_calculation) <= race_count
+  third_horse_total = 0
+  now = third_index
+  score_calculation.times do
+    third_horse_total += third_horse[now]
+    now += 1
+  end
+  third_horse_total_ver2 = third_horse_total.to_f
+  third_horse_total_ver2 /= score_calculation
+  if third_horse_rank > third_horse_total_ver2
+    third_horse_rank = third_horse_total_ver2
+  end
+  third_index += 1
+end
+
+#x =  [[first_horse_rank], [second_horse_rank], [third_horse_rank]].min
+
+if first_horse_rank < second_horse_rank && first_horse_rank < third_horse_rank
+  puts 1
+end
+
+if first_horse_rank > second_horse_rank && second_horse_rank < third_horse_rank
+  puts 2
+end
+
+if first_horse_rank > third_horse_rank && second_horse_rank > third_horse_rank
+  puts 3
+end

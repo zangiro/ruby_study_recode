@@ -1,0 +1,32 @@
+ベルトコンベア
+rubyの勉強08月06日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+schedule = lines[0].split[0].to_i
+belt_A = lines[0].split[1].to_i
+belt_B = lines[0].split[2].to_i
+main_schedule = lines[1].chars
+# ["R", "R", "L", "F", "L"]
+belt_A_schedule = lines[2].chars
+belt_B_schedule = lines[3].chars
+
+belt_A_index = 0
+main_schedule.each do |m_s|
+  if belt_A_index < belt_A && m_s == belt_A_schedule[belt_A_index]
+    belt_A_index += 1
+  end
+end
+
+answer_1 = belt_A - belt_A_index
+
+belt_b_index = 0
+main_schedule.each do |m_s|
+  if belt_b_index < belt_B && m_s == belt_B_schedule[belt_b_index]
+    belt_b_index += 1
+  end
+end
+
+answer_2 = belt_B - belt_b_index
+
+puts "#{answer_1} #{answer_2}"
