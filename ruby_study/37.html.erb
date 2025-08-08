@@ -1,0 +1,61 @@
+暗号文字
+rubyの勉強08月08日
+
+word = "A"
+numbers = word.ord# - 'a'.ord + 1
+
+p numbers
+# [1, 2, 3, 4]
+
+#input = 26
+#result = (input + 65).chr  # 65がAのASCIIコード
+#puts result
+
+lines = $stdin.readlines.map{|word|word.chomp}
+array =  lines[0].chars
+# ["O", "Z", "H", "Y", "Z", "3", "8"]
+
+index = 0
+answer = []
+while index <= (array.length - 1)
+  ascii = array[index].ord
+
+  if ascii >= 48 && ascii <= 57
+    # 数値の処理と英語処理で区分
+    number_ascii = ascii
+    kari = []
+
+    while number_ascii >= 48 && number_ascii <= 57
+      kari << number_ascii.chr
+      # 文字列のまま
+
+      if index < (array.length - 1)
+        next_word = array[index + 1]
+        next_ascii = next_word.ord
+      else
+        break
+      end
+
+      if next_ascii >= 48 && next_ascii <= 57
+        number_ascii = next_ascii
+        index += 1
+      else
+        break
+      end
+    end
+
+    conversion = kari.join.to_i + 1
+    answer << conversion
+  else
+    if ascii == 90
+      word = "A"
+    else
+      word = (ascii + 1).chr
+    end
+    
+    answer << word
+  end
+  index += 1
+end
+
+p answer.join
