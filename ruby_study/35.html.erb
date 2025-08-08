@@ -1,0 +1,29 @@
+オークション問題
+rubyの勉強08月08日
+
+
+lines = $stdin.readlines.map{|word|word.chomp}
+infomation = lines[0].split.map{|word|word.to_i}
+# [1, 1500, 2050]
+now_peyment = infomation[0]
+a_badget = infomation[1]
+b_badget = infomation[2]
+finish = nil
+
+while finish == nil
+  if (now_peyment + 10) <= a_badget
+    now_peyment += 10
+  else
+    puts "B #{now_peyment}"
+    finish = 0
+    break
+  end
+
+  if (now_peyment + 1000) <= b_badget
+    now_peyment += 1000
+  else
+    puts "A #{now_peyment}"
+    finish = 0
+    break
+  end
+end

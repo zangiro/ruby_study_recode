@@ -1,0 +1,43 @@
+逆さの部屋番号
+rubyの勉強08月08日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+infomation = lines[0].split.map{|word|word.to_i}
+# [1, 9]
+
+start_number = infomation[0]
+end_number = infomation[1]
+
+count = 0
+now_floor = start_number
+
+while now_floor <= end_number
+  floor_string = now_floor.to_s
+  # "123"
+  floor_array = now_floor.to_s.chars
+  # ["1", "2", "3"]
+  max_length = floor_array.length - 1
+
+  new_array = []
+  if floor_array[max_length] != "0" && !floor_array.include?("2") && !floor_array.include?("3") && !floor_array.include?("4") && !floor_array.include?("5") && !floor_array.include?("7")
+    floor_array.reverse.each do |arr|
+      if arr == "6"
+        word = "9"
+      elsif arr == "9"
+        word = "6"
+      else
+        word = arr
+      end
+      new_array << word
+    end
+    new_array_join = new_array.join
+
+    if new_array_join == floor_string
+      count += 1
+    end
+  end
+
+  now_floor += 1
+end
+
+p count
