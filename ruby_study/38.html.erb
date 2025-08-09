@@ -1,0 +1,33 @@
+変数テスト問題
+rubyの勉強08月09日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+array_count = lines[0].to_i
+array = lines[1..array_count].map{|a|a.split}
+# [["SET", "1", "10"], ["SET", "2", "20"], ["ADD", "40"]]
+set_1 = 0
+set_2 = 0
+
+array.each do |arr|
+  if arr.length == 3
+    test = arr[0]
+    target = arr[1].to_i
+    how = arr[2].to_i
+  else
+    test = arr[0]
+    how = arr[1].to_i
+  end
+  if test == "SET"
+    if target == 1
+      set_1 = how
+    else
+      set_2 = how
+    end
+  elsif test == "ADD"
+    set_2 = (set_1 + how)
+  elsif test == "SUB"
+    set_2 = (set_1 - how)
+  end
+end
+
+puts "#{set_1} #{set_2}"

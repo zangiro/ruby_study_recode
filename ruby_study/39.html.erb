@@ -1,0 +1,38 @@
+レストラン
+rubyの勉強08月09日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+food_count = lines[0].split[0].to_i
+max_calorie = lines[0].split[1].to_i
+array = lines[1..food_count].map{|a|a.split.map{|b|b.to_i}}
+# [[11, 100], [1, 120], [2, 200], [....
+hash = {}
+(1..10).each do |n|
+  hash[n] = {complate: "NG"}
+end
+now_calorie = 0
+
+array.each do |arr|
+  rank = arr[0]
+  calorie = arr[1]
+  now_calorie += calorie
+  if now_calorie <= max_calorie
+    hash[rank][:complate] = "OK" if rank <= 10
+  else
+    break
+  end
+end
+
+count = hash.count { |_, value| value[:complate] == "OK" }
+if count == 10
+  puts "Yes"
+else
+  puts count
+end
+
+
+
+
+{1=>{:complate=>"OK"}, 2=>{:complate=>"OK"}, 3=>{:complate=>"NG"}, 4=>{:complate=>"OK"}, 
+5=>{:complate=>"NG"}, 6=>{:complate=>"NG"}, 7=>{:complate=>"NG"}, 8=>{:complate=>"NG"},
+9=>{:complate=>"NG"}, 10=>{:complate=>"NG"}}
