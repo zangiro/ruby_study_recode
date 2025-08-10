@@ -1,0 +1,22 @@
+セール
+rubyの勉強08月10日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+buy_count = lines[0].split[0].to_i
+until_sale = lines[0].split[1].to_i
+free_of_charge = lines[0].split[2].to_i
+array = lines[1..buy_count].map{|a|a.to_i}.sort
+# [100, 200, 300, 400, 500]
+
+if array.length >= until_sale
+  how = array[free_of_charge..(array.length - 1)]
+else
+  how = array
+end
+
+count = 0
+how.each do |arr|
+  count += arr
+end
+
+puts count
