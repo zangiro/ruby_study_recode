@@ -1,0 +1,29 @@
+シャボン玉移動
+rubyの勉強08月10日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+data = lines[0].split.map{|a|a.to_i}
+array_count = data[0]
+start_x = data[1]
+start_y = data[2]
+data_array = lines[1..array_count].map{|a|a.split.map{|b|b.to_i}}
+# [[4, 2], [-5, -4], [3, 3], [3, 3]]
+
+start = [start_x, start_y]
+answer = start_x
+
+
+data_array.each do |arr|
+  how_move_x = arr[0]
+  how_move_y = arr[1]
+  start[0] += how_move_x
+  start[1] += how_move_y
+  if answer < start[0]
+    answer = start[0]
+  end
+  if start[1] <= 0
+    break
+  end
+end
+
+p answer

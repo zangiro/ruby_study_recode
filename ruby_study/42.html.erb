@@ -1,0 +1,40 @@
+レース
+rubyの勉強08月10日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+first_match = lines[0].split.map{|a|a.to_i}.sort
+second_match = lines[1].split.map{|a|a.to_i}.sort
+first_time = lines[2].split.map{|a|a.to_i}
+# [988, 876, 921, 906]
+final_time = lines[2].split.map{|a|a.to_i}
+
+first_battle_player_1_time = first_time[(first_match[0] - 1)]
+first_battle_player_2_time = first_time[(first_match[1] - 1)]
+
+second_battle_player_1_time = first_time[(second_match[0] - 1)]
+second_battle_player_2_time = first_time[(second_match[1] - 1)]
+
+final_player = []
+if first_battle_player_1_time < first_battle_player_2_time
+  final_player << first_match[0]
+else
+  final_player << first_match[1]
+end
+
+if second_battle_player_1_time < second_battle_player_2_time
+  final_player << second_match[0]
+else
+  final_player << second_match[1]
+end
+
+sort_final_player = final_player.sort
+a = final_time[0]
+b = final_time[1]
+
+if a < b
+  puts sort_final_player[0]
+  puts sort_final_player[1]
+else
+  puts sort_final_player[1]
+  puts sort_final_player[0]
+end
