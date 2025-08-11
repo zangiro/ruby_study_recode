@@ -1,0 +1,99 @@
+漁業
+rubyの勉強08月11日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+sea_hight = lines[0].split[0].to_i
+sea_width = lines[0].split[1].to_i
+fish_area_array = lines[1..sea_hight].map{|a|a.split.map{|b|b.to_i}}
+# [[2, 0, 0, 0, 1], [0, 2, 0, 0, 0], [0, 1, 0, 3, 0],...
+
+get_area_hight = lines[(sea_hight + 1)].split[0].to_i
+get_area_width = lines[(sea_hight + 1)].split[1].to_i
+get_area_array = lines[(sea_hight + 2)..(sea_hight + get_area_hight + 1)].map{|a|a.chars}
+# [["#", "#", "."], ["#", ".", "#"]]
+
+
+
+
+
+
+count = 0
+
+how_slide_hight = 0
+(sea_hight - (get_area_hight - 1)).times do #hight軸
+  how_slide_width = 0
+  (sea_width - (get_area_width - 1)).times do  # width軸
+    new_count = 0
+
+    get_area_array.each_with_index do |x1, i1|
+      x1.each_with_index do |x2, i2|
+        if x2 == "#"
+          new_count += fish_area_array[i1 + how_slide_hight][i2 + how_slide_width]
+        end
+      end
+    end
+    count = new_count if count < new_count
+
+    how_slide_width += 1
+  end
+  how_slide_hight += 1
+end
+
+p new_count
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+# x軸方向へのテスト
+x = [["#", "#", "."], ["#", ".", "#"], ["#", "." , "#"]]
+y = [[1 ,2 ,3, 3],[4, 5, 6, 3], [7, 8, 9, 3]]
+
+how_slide_width = 0
+2.times do
+  count = 0
+  xxx = 0
+
+  3.times do
+    x[xxx].each_with_index do |arr, i|
+      if arr == "#"
+        count += y[xxx][i + how_slide_width]
+      end
+    end
+    xxx += 1
+  end
+
+  how_slide_width += 1
+  p count
+end
+
+
+
+
+x = [["#", "#", "."], ["#", ".", "#"], ["#", "." , "#"]]
+y = [[1 ,2 ,3],[4, 5, 6], [7, 8, 9], [10, 11, 12]]
+
+
+
+
+how_slide_hight = 0
+2.times do #x軸
+  count = 0
+  how_slide_width = 0
+  1.times do  # y軸
+    xxx = 0
+    3.times do
+      x[xxx].each_with_index do |arr, i|
+        if arr == "#"
+          count += y[xxx + how_slide_hight][i + how_slide_width]
+        end
+      end
+      xxx += 1
+    end
+
+    how_slide_width += 1
+  end
+  how_slide_hight += 1
+  p count
+end
+
+
+ーーーーーーーーーーーーーーーーーー ーーーーーーーーーーーーーーーーーー 
+
