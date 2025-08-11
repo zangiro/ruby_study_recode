@@ -1,0 +1,27 @@
+某コラボ問題
+rubyの勉強08月11日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+record = lines[0].to_i
+array = lines[1..record].map{|a|a.to_i}
+
+max = 0
+min = 0
+max_counter = 0
+min_counter = 0
+index = 1
+today_record = array[0]
+while index <= array.length - 1
+  if today_record < array[index]
+    min_counter = 0
+    max_counter += 1
+    max = max_counter if max < max_counter
+  else
+    max_counter = 0
+    min_counter += 1
+    min = min_counter if min < min_counter
+  end
+  index += 1
+end
+
+puts "#{min} #{max}"
