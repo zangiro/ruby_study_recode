@@ -1,0 +1,33 @@
+単語検索
+rubyの勉強08月13日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+word_count = lines[0].to_i
+target = lines[1].chars
+# ["a", "i"]
+chars_array = lines[2..(word_count + 1)].map{|a|a.chars}
+# [["p", "i", "z", "z", "a"], ["p", "a", "i", "z", "a"], ["a", "i", "z", "u"],....
+original_array = lines[2..(word_count + 1)]
+how_answer_length = target.length
+answer_count = 0
+
+chars_array.each_with_index do |arr, index|
+  target_index = 0
+  arr.each do |word|
+    if word == target[target_index]
+      target_index += 1
+    else
+      target_index = 0
+    end
+
+    if target_index == how_answer_length
+      puts "#{original_array[index]}"
+      answer_count += 1
+      break
+    end
+  end
+end
+
+if answer_count == 0
+  puts "None"
+end
