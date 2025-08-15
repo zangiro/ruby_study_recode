@@ -1,0 +1,55 @@
+退室入室
+rubyの勉強08月15日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+data_count = lines[0].to_i
+array = lines[1..data_count]
+# ["07:11 17:09", "11:10 23:00",
+
+count = 0
+array.each do |arr|
+  split_arr = arr.split.map{|a|a.chars}
+  # [["0", "7", ":", "1", "1"], ["1", "7", ":", "0", "9"]]
+  
+  in_time_hour = (split_arr[0][0] + split_arr[0][1]).to_i
+  # 7
+  in_time_minute = (split_arr[0][3] + split_arr[0][4]).to_i
+  # 11
+  how_in_time = (in_time_hour * 60) + in_time_minute
+  # 431
+  out_time_hour = (split_arr[1][0] + split_arr[1][1]).to_i
+  # 17
+  out_time_minute = (split_arr[1][3] + split_arr[1][4]).to_i
+  # 9
+  how_out_time = (out_time_hour * 60) + out_time_minute
+  # 1029
+  if how_out_time > how_in_time  # 退室 > 入室
+    count += how_out_time - how_in_time
+    # 598
+  else
+    count += 1440 - how_out_time
+    count += how_in_time
+  end
+end
+hour = count / 60
+minute = count % 60
+puts "#{hour} #{minute}"
+
+
+
+
+
+          60*24   60*23
+23:00入    1440 - 1380
+0:00外
+
+
+
+
+
+
+
+x = [1,2,3,4]
+[12,34][12,43][21,34][21,43]
+[13,24][13,42][31,24][31,42] 
+[14,23][14,32][41,23][41,32]
