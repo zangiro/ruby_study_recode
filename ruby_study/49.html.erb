@@ -1,0 +1,121 @@
+虫食い算
+rubyの勉強08月16日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+data = lines[0].split.map{|a|a.to_i}
+# [4, 1]
+hundred_number = data[0]
+one_number = data[1]
+check = 0
+should_break = false
+
+(1..9).each do |word_a|
+  (0..9).each do |word_b|
+    calculation_formula = ("#{word_a}#{word_b}").to_i * word_b
+    calculation_answer = ("#{hundred_number}#{word_a}#{one_number}").to_i
+    if calculation_formula == calculation_answer
+      puts "#{word_a} #{word_b}"
+      check += 1
+      should_break = true
+    end
+    puts word_a
+  end
+  break if should_break
+end
+
+if check == 0
+  puts "No"
+end
+
+
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4 9
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+6
+6
+6
+6
+6
+6
+6
+6
+6
+6
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+8
+8
+8
+8
+8
+8
+8
+8
+8
+8
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
