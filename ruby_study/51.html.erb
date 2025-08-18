@@ -1,0 +1,20 @@
+ランクD
+rubyの勉強08月18日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+word = lines[0].to_i
+
+count = 0
+humans = 1
+word.times do
+  count += humans
+  humans += 1
+end
+
+ーーーーーーーーーーーーーーーーーーーーーーーー
+lines = $stdin.readlines.map{|word|word.chomp}
+first = lines[0].to_i
+second = lines[1].to_i
+x = first % second
+
+p x * 1000
