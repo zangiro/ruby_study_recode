@@ -1,0 +1,36 @@
+古代文字解読
+rubyの勉強08月23日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+word = lines[0].chars
+# ["/", "/", "/", "+", "/", "/", "/", "/"]
+
+how_length = word.length
+array = []
+stock = []
+word.each_with_index do |w, index|
+  if w == "+"
+    array << stock
+    stock = []
+  elsif index == (how_length - 1)
+    stock << w
+    array << stock
+  else
+    stock << w
+  end
+end
+
+count = 0
+array.each do |arr|
+  result = 0
+  arr.each do |a|
+    if a == "<"
+      result += 10
+    else
+      result += 1
+    end
+  end
+  count += result
+end
+
+p count
