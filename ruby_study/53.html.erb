@@ -1,0 +1,19 @@
+お菓子の分配
+rubyの勉強08月24日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+how_machine = lines[0].split[0].to_i
+all_okasi = lines[0].split[1].to_i
+array = lines[1..how_machine].map{|a|a.to_i}
+# [2, 3, 4]
+hash = {}
+array.each_with_index do |arr, index|
+  x = all_okasi / arr
+  y = all_okasi % arr
+  z = (all_okasi - y) / x
+  hash[index + 1] = { count: z, amari: y }
+end
+
+sorted_hash = hash.sort_by { |key, value| [value[:amari], -value[:count]] }.to_h
+
+p sorted_hash.first[0]
