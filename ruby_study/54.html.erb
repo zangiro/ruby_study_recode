@@ -1,0 +1,22 @@
+ランクD
+rubyの勉強08月25日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+a = lines[0].split[0].to_i
+b = lines[0].split[1].to_i
+c = lines[1].split[0].to_i
+d = lines[1].split[1].to_i
+total_1 = a + b
+total_2 = c + d
+if total_1 < total_2
+    p total_1
+else
+    p total_2
+end
+
+ーーーーーーーーーーーーーーーーーー
+lines = $stdin.readlines.map{|word|word.chomp}
+a = lines[0].split[0].to_i
+b = lines[0].split[1].to_i
+
+p b / a
