@@ -1,0 +1,32 @@
+道問題
+rubyの勉強08月26日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+map_h_and_w = lines[0].split[0].to_i
+max_number = lines[0].split[1].to_i
+array = lines[1..map_h_and_w].map{|a|a.split.map{|b|b.to_i}}
+# [[100, 200, 20], [100, 20, 20]....
+x_index = 0
+answer = []
+
+map_h_and_w.times do
+  y_index = 0
+  map_h_and_w.times do
+    if array[y_index][x_index] < max_number
+      if y_index == (map_h_and_w - 1)
+        answer << (x_index + 1)
+      end
+      y_index += 1
+    else
+      break
+    end
+  end
+  x_index += 1
+end
+
+if answer == []
+  puts "wait"
+else
+  conversion_answer = answer.join(" ")
+  puts conversion_answer
+end
