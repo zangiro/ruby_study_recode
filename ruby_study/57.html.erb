@@ -1,0 +1,71 @@
+仲間探し
+rubyの勉強08月28日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+map_hight = lines[0].split[0].to_i
+map_width = lines[0].split[1].to_i
+home_x_index = (lines[1].split[0].to_i) - 1
+home_y_index = (lines[1].split[1].to_i) - 1
+array = lines[2..(map_hight + 1)].map{|a|a.chars}
+# [["#", "#", "3", "#", "#"], ["#", "3", "#", "#", "2"],
+word = ["N", "E","S","W"]
+hash = {}
+word.each do |w|
+  hash[w] = {count: 0}
+end
+# {"N"=>{:count=>0}, "E"=>{:count=>0}, "S"=>{:count=>0}, "W"=>{:count=>0}}
+
+if home_y_index > 0
+  norce_array = array[0...home_y_index]
+  norce_array.each do |n_arr|
+    n_arr.each do |arr|
+      number = 0
+      if arr != "#"
+        number = arr.to_i
+        hash["N"][:count] += number
+      end
+    end
+  end
+end
+
+if home_y_index < (array.length - 1)
+  south_array = array[(home_y_index + 1)..(array.length - 1)]
+  south_array.each do |s_arr|
+    s_arr.each do |arr|
+      number = 0
+      if arr != "#"
+        number = arr.to_i
+        hash["S"][:count] += number
+      end
+    end
+  end
+end
+
+if home_x_index > 0
+  y_index = 0
+  map_hight.times do
+    check_start = 0
+    while check_start < home_x_index
+      hash["W"][:count] += array[y_index][check_start].to_i if array[y_index][check_start] != "#"
+      check_start += 1
+    end
+    y_index += 1
+  end
+end
+
+if home_x_index < (map_width - 1)
+  y_index = 0
+  map_hight.times do
+    check_start = home_x_index + 1
+    while check_start < map_width
+      hash["E"][:count] += array[y_index][check_start].to_i if array[y_index][check_start] != "#"
+      check_start += 1
+    end
+    y_index += 1
+  end
+end
+sorted_hash = hash.sort_by { |key, value| -value[:count] }.to_h
+
+a = sorted_hash.first[0]
+b = sorted_hash.first[1][:count]
+puts "#{a} #{b}"
