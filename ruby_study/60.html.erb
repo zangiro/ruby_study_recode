@@ -1,0 +1,49 @@
+--SQL学習--
+
+SELECT *
+FROM nobel
+WHERE yr < 1910
+AND subject = "medicine"
+OR yr >= 2004
+AND subject = "literature"
+;
+
+---
+SELECT winner 
+FROM nobel
+ORDER BY winner DESC
+;
+
+
+----
+SELECT winner, subject
+  FROM nobel
+ WHERE yr=1984
+ ORDER BY subject IN('Physics','Chemistry')
+;
+
+---
+袋詰
+rubyの勉強09月01日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+word_count = lines[0].split[0].to_i
+one_page_word = lines[0].split[1].to_i
+how_search_page = lines[0].split[2].to_i
+word_array_ord = lines[1].split.map{|a|a.chars.map{|b|b.ord}}.sort
+word_array = word_array_ord.map{|a|a.map{|b|b.chr}}
+word_array_joined = word_array.map{|a|a.join}
+answer = []
+index = 0
+((word_count / one_page_word) + (word_count % one_page_word)).times do
+    hold_array = []
+    one_page_word.times do
+        hold_array << word_array_joined[index] if index <= word_array_joined.length- 1
+        index += 1
+    end
+    answer << hold_array
+    
+end
+answer[how_search_page - 1].each do |w|
+    puts w
+end
