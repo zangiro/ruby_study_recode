@@ -1,0 +1,78 @@
+鼠小僧
+rubyの勉強09月02日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+map_hight = lines[0].split[0].to_i
+map_width = lines[0].split[1].to_i
+start_point_hight = lines[1].split[0].to_i
+start_point_width = lines[1].split[1].to_i
+map_array = lines[2..(map_hight + 1)].map{|a|a.chars}
+#[".", "*", ".", "*", "."]
+#["*", ".", ".", ".", "."]
+#[".", "*", ".", ".", "."]
+#[".", "*", ".", ".", "*"]
+  
+def how_move(now_front)
+  if now_front == 1 #上
+    return ["y",-1] 
+  elsif now_front == 2 #右
+    return ["x",1] 
+  elsif now_front == 3 #下
+    return ["y",1] 
+  elsif now_front == 4 #左
+    return ["x",-1]
+  end
+end
+
+now_x = start_point_width - 1
+now_y = start_point_hight - 1
+front = 1
+roop_break = false
+
+while roop_break == false
+  house = map_array[now_y][now_x]
+  if house == "."
+    front += 1
+    map_array[now_y][now_x] = "*"
+  elsif house == "*"
+    front -= 1
+    map_array[now_y][now_x] = "."
+  end
+  front = 1 if front > 4
+  front = 4 if front < 1
+  command_info = how_move(front)
+  if command_info[0] == "x"
+    now_x += command_info[1]
+  else
+    now_y += command_info[1]
+  end
+
+  roop_break = true if now_x < 0 || now_x > (map_width - 1) || now_y < 0 || now_y > (map_hight - 1)
+end
+  
+answer = map_array.map{|a|a.join("")}
+answer.each do |m|
+  puts m
+end
+  
+-----
+---SQL学習---
+FROM world
+WHERE population > (
+SELECT population
+FROM world
+WHERE name = "Russia"
+)
+;
+
+----
+
+SELECT name
+FROM world
+WHERE gdp / population > (
+SELECT gdp / population
+FROM world
+WHERE name = "United Kingdom"
+)
+AND continent = "Europe"
+;
