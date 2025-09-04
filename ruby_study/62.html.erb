@@ -1,0 +1,26 @@
+ネットサーフィン
+rubyの勉強09月04日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+command_count = lines[0].to_i
+array = lines[2..command_count].map{|a|a.split}
+# [["go", "to", "blank", "page"], ["go", "to", "bja", "n"], ["go", "to", "va"], 
+#  ["use", "the", "back", "button"], ["use", "the", "back", "button"]]
+
+move_record = ["blank page"]
+puts move_record
+
+array.each do |arr|
+  if arr[0] == "go"
+    arr_max_index = arr.length - 1
+    join_word = arr[2..arr_max_index].join(" ")
+    puts join_word
+    move_record << join_word
+  elsif arr[0] == "use" && move_record.length == 1
+    puts move_record
+  elsif arr[0] == "use"
+    move_record.pop
+    puts move_record.last
+  end
+end
+  
