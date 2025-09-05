@@ -1,0 +1,57 @@
+---SQL学習---
+
+SELECT name
+FROM world
+WHERE GDP > (
+SELECT GDP
+from world
+WHERE continent = "Europe"
+ORDER BY GDP DESC
+LIMIT 1
+
+
+----
+SELECT continent, name, area
+FROM world world_A
+WHERE area >= ALL (
+SELECT area
+FROM world world_B
+WHERE world_A.continent = world_B.continent
+)
+;
+
+
+順位
+rubyの勉強09月05日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+humans = lines[0].split[0].to_i
+game_count = lines[0].split[1].to_i
+record_array = lines[1..humans].map{|a|a.split.map{|b|b.to_i}}
+sort_record_array = record_array.map{|a|a.sort.reverse}
+# [[450, 420, 400], [500, 410, 400], [500, 490, 490]]
+index = 0
+each_game_array = []
+game_count.times do
+  test_array = []
+  sort_record_array.each do |arr|
+    test_array << arr[index]
+  end
+  each_game_array << test_array
+  index += 1
+end
+
+# each_game_array....[[450, 500, 500], [420, 410, 490], [400, 400, 490]]
+
+each_game_array.each_with_index do |arr, index|
+  max_score = arr.max
+  if arr.count(max_score) >= 2 && index == (game_count - 1)
+    arr.each_with_index do |number, index|
+      puts (index + 1) if number == max_score
+    end
+  elsif arr.count(max_score) == 1
+    winner = arr.index(max_score) + 1
+    puts winner
+    break
+  end
+end
