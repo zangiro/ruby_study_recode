@@ -1,0 +1,78 @@
+不思議文字
+rubyの勉強09月06日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+array = lines[0].split.map{|a|a.chars}
+# [["B", "E", "E"], ["C", "D"]]
+
+five_number_1 = []
+array[0].each do |word|
+  if word == "A"
+    hold = 0
+  elsif word == "B"
+    hold = 1
+  elsif word == "C"
+    hold = 2
+  elsif word == "D"
+    hold = 3
+  elsif word == "E"
+    hold = 4
+  end
+  five_number_1 << hold
+end
+total_1 = 0
+five_number_1.reverse.each_with_index do |num, index|
+  total_1 += num * (5 ** index)
+end
+
+five_number_2 = []
+array[1].each do |word|
+  if word == "A"
+    hold = 0
+  elsif word == "B"
+    hold = 1
+  elsif word == "C"
+    hold = 2
+  elsif word == "D"
+    hold = 3
+  elsif word == "E"
+    hold = 4
+  end
+  five_number_2 << hold
+end
+total_2 = 0
+five_number_2.reverse.each_with_index do |num, index|
+  total_2 += num * (5 ** index)
+end
+
+total_answer = total_1 + total_2
+
+num_b = 1
+five_num = []
+now_number = total_answer
+if now_number == 0
+  five_num << 0
+else
+  while now_number > 0
+    num_a = now_number % 5
+    num_b = now_number / 5
+    now_number = num_b
+    five_num << num_a
+  end
+end
+
+answer = []
+five_num.reverse.each do |a|
+  if a == 0
+    hold = "A"
+  elsif a == 1
+    hold = "B"
+  elsif a == 2
+    hold = "C"
+  elsif a == 3
+    hold = "D"
+  elsif a == 4
+    hold = "E"
+  end 
+  answer << hold
+end
