@@ -1,0 +1,124 @@
+
+javaの勉強09月07日
+
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    String[] parts = word.split(" ");
+    int num1 = Integer.parseInt(parts[0]);
+    int num2 = Integer.parseInt(parts[1]); 
+    System.out.println(result);
+    System.out.println(result);
+  }
+}
+
+---
+SQL学習
+
+SELECT name, continent, population
+FROM world A
+WHERE 25000000 > (
+SELECT max(population)
+FROM world B
+WHERE A.continent = B.continent
+);
+
+
+ーーーー
+SELECT name, continent
+FROM world A
+WHERE (
+    SELECT MAX(population)
+    FROM world B
+    WHERE A.continent = B.continent
+) > 3 * (
+    SELECT population
+    FROM world C
+    WHERE A.continent = C.continent
+    ORDER BY population DESC
+    LIMIT 1 OFFSET 1
+)
+AND A.population = (
+    SELECT MAX(population)
+    FROM world D
+    WHERE A.continent = D.continent
+);
+ーーーー
+掃除ロボット
+rubyの勉強09月07日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+timelimit = lines[0].to_i
+map_hight = lines[1].split[0].to_i
+map_width = lines[1].split[1].to_i
+map_array = lines[2..(map_hight + 1)].map{|a|a.chars}
+# [[".", ".", "#", "#", ".", "."], [".", "#", "#", ".", "#", "."],....
+# "#" は汚れたマスを、"." は汚れてないマス
+def how_move(now_front)
+  if now_front == 1 #上
+    return ["y",-1] 
+  elsif now_front == 2 #右
+    return ["x",1] 
+  elsif now_front == 3 #下
+    return ["y",1] 
+  elsif now_front == 4 #左
+    return ["x",-1]
+  end
+end
+
+now_place_x = 0
+now_place_y = 0
+do_yo_move = ["x",1]
+count = 0
+front = 2
+
+while timelimit > 0
+  if do_yo_move[0] == "x"
+    target = map_array[now_place_y][now_place_x]
+    count += 1 if target == "#"
+    map_array[now_place_y][now_place_x] = 0
+    if (now_place_x + do_yo_move[1]) >= 0 && (now_place_x + do_yo_move[1]) <= (map_width - 1)
+      if map_array[now_place_y][now_place_x + do_yo_move[1]] == 0
+        front += 1
+        front = 1 if front > 4
+        do_yo_move = how_move(front)
+        now_place_y += do_yo_move[1]
+        break if map_array[now_place_y][now_place_x] == 0
+      else
+        now_place_x += do_yo_move[1]
+      end
+    else
+      front += 1
+      front = 1 if front > 4
+      do_yo_move = how_move(front)
+      now_place_y += do_yo_move[1]
+    end
+  else
+    target = map_array[now_place_y][now_place_x]
+    count += 1 if target == "#"
+    map_array[now_place_y][now_place_x] = 0
+    if (now_place_y + do_yo_move[1]) >= 0 && (now_place_y + do_yo_move[1]) <= (map_hight - 1)
+      if map_array[now_place_y + do_yo_move[1]][now_place_x] == 0
+        front += 1
+        front = 1 if front > 4
+        do_yo_move = how_move(front)
+        now_place_x += do_yo_move[1]
+        break if map_array[now_place_y][now_place_x] == 0
+      else
+        now_place_y += do_yo_move[1]
+      end
+    else
+      front += 1
+      front = 1 if front > 4
+      do_yo_move = how_move(front)
+      now_place_x += do_yo_move[1]
+    end
+  end
+  timelimit -= 1
+end
+
+p count
