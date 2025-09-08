@@ -1,0 +1,56 @@
+--java勉強
+public class Main {
+  public static void main(String[] args) {
+    int[] numbers = {1, 2, 3, 4, 5};
+    for (int num : numbers) {
+      System.out.println("Number: " + num);
+    }
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    List<String> fruits = new ArrayList<>();
+    fruits.add("Apple");
+    fruits.add("Banana");
+    fruits.add("Cherry");
+        
+    for (String f : fruits) {
+      System.out.println("Fruit: " + f);
+    }
+  }
+}
+
+
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Main {
+  public static void main(String[] args) {
+    Set<String> uniqueNames = new HashSet<>();
+    uniqueNames.add("Alice");
+    uniqueNames.add("Bob");
+    uniqueNames.add("Alice"); // 重複は無視される
+        
+    for (String name : uniqueNames) {
+      System.out.println("Name: " + name);
+    }
+  }
+}
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+  public static void main(String[] args) {
+    Map<String, Integer> ages = new HashMap<>();
+    ages.put("Alice", 30);
+    ages.put("Bob", 25);
+        
+    for (Map.Entry<String, Integer> entry : ages.entrySet()) {
+      System.out.println(entry.getKey() + ": " + entry.getValue());
+    }
+  }
+}
