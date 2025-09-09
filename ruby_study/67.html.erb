@@ -1,0 +1,69 @@
+勉強9月9日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    String [] words = word.split(" ");
+    int hot = Integer.parseInt(words[0]);
+    int cool = Integer.parseInt(words[1]);
+    int answer = hot - cool;
+
+    System.out.println(answer);
+  }
+}
+
+--------------------------------
+import java.util.Scanner;
+
+class Main {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+String word = sc.nextLine();
+
+char[] chars = word.toCharArray();
+char firstChar = chars[0];
+System.out.println(firstChar);
+}
+}
+
+-----------
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    
+    char firstChar = word.charAt(0);
+    System.out.println(firstChar);
+  }
+}
+
+
+----------
+class Main {
+  public static void main(String[] args) {
+    String word = "こんにちは";
+    if (word.equals("こんにちは")) {
+      System.out.println("OK");
+    } else {
+      System.out.println("NO");
+    }
+  }
+}
+
+
+-----
+class Main {
+  public static void main(String[] args) {
+    String word = "こんにちは";
+    if (word = "こんにちは") {
+      System.out.println("OK");
+    } else {
+      System.out.println("NO");
+    }
+  }
+}
