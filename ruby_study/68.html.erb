@@ -1,0 +1,48 @@
+勉強9月10日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    String word2 = sc.nextLine();
+    int num = Integer.parseInt(word);
+    int num2 = Integer.parseInt(word2);
+    int total = num + num2;
+    if (total >= 1000) {
+      total -= 100;
+    }
+    System.out.println(total);
+  }
+}
+
+
+ーーーーーーーーーーーーーーーーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    int num2 = Integer.parseInt(sc.nextLine());
+    int total = 180 - num - num2;
+    System.out.println(total);
+  }
+}
+
+ーーーーーーーーーーーーーーーーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    String split_word[] = word.split(" ");
+    int num = Integer.parseInt(split_word[0]);
+    int num2 = Integer.parseInt(split_word[1]);
+    System.out.println(num - num2);
+  }
+}
+
