@@ -46,3 +46,119 @@ class Main {
   }
 }
 
+
+ーーーーーーーーーーーーーーーーーー
+勉強9月11日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    if (num < 10000){
+      num += 10000;
+    }
+    System.out.println(num);
+  }
+}
+
+ーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String split_word [] = sc.nextLine().split(" ");
+    char first_name [] = split_word[0].toCharArray();
+    char last_name [] = split_word[1].toCharArray();
+
+    System.out.println(first_name[0] + "." + last_name[0]);
+  }
+}
+
+ーーーー
+SELECT continent
+FROM world 
+GROUP BY continent
+
+ーーーー
+SELECT SUM(GDP)
+FROM world
+WHERE continent = "Africa"
+;
+
+
+勉強9月12日
+ーーーーーーーーーーーーーーーーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    int num2 = Integer.parseInt(sc.nextLine());
+    System.out.println(num - num2);
+  }
+}
+
+ーーーーーーーーーーーーーーーーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char char_word [] = sc.nextLine().toCharArray();
+    if (char_word.length == 1){
+      System.out.println(char_word[0]);
+    } else {
+      char first_word = char_word[0];
+      char last_word = char_word[char_word.length - 1];
+      System.out.println("" + first_word + last_word);
+    }
+  }
+}
+
+ーーーーーーーーーーーーーーーーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    if (word.equals("candy") || word.equals("chocolate")) {
+      System.out.println("Thanks!");
+    } else {
+      System.out.println("No!");
+    }
+  }
+}
+
+ーーーーーーーーーーーーーーーーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    int count = 1;
+    int total = num;
+    while (total < 24) {
+      total += num;
+      count++;
+    }
+    System.out.println(count);
+  }
+}
+
+ーーーーーーーーーーーーーーーーーー
+
+SELECT COUNT(id) AS user_count
+FROM Users
+WHERE age <= 20
+;
