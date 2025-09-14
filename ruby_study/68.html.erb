@@ -162,3 +162,148 @@ SELECT COUNT(id) AS user_count
 FROM Users
 WHERE age <= 20
 ;
+
+ーーーーーーーーーーーーーーーーーー
+勉強9月14日
+SELECT count(name)
+FROM world
+WHERE area >= 1000000;
+
+ーーーーーーーーーーーーーーーーーー
+SELECT SUM(population)
+FROM world
+WHERE name in ('Estonia', 'Latvia', 'Lithuania')
+;
+ーーーーーーーーーーーーーーーーーー
+SELECT continent, COUNT(continent)
+FROM world
+GROUP BY continent
+;
+ーーーーーーーーーーーーーーーーーー
+SELECT continent, COUNT(*)AS 国数
+FROM world A
+WHERE 10000000 <= (
+SELECT SUM(population)
+FROM world B
+WHERE A.continent = B.continent
+)
+GROUPBY continent;
+ーーーーーーーーーーーーーーーーーー
+SELECT continent, COUNT(name)
+FROM world
+WHERE population >= 10000000
+GROUPBY continent;
+ーーーーーーーーーーーーーーーーーー
+
+
+7 abcdefg
+2016 9 18
+5 ABCDE
+2018 9 16
+6 ahkldc
+2016 9 17
+4 Gabd
+2016 9 18
+
+キーワード検証
+rubyの勉強09月14日
+
+lines = $stdin.readlines.map{|word|word.chomp}
+sns_word_count = lines[0].split[0].to_i
+match_word_count = lines[0].split[1].to_i
+sns_word_array = lines[1..(sns_word_count * 2)]
+match_word_array = lines[((sns_word_count * 2)+ 1)..((sns_word_count * 2)+ match_word_count)]
+
+word_hash = {}
+index = 1
+array_index = 0
+sns_word_count.times do
+  word_info = sns_word_array[array_index].split
+  # ["4", "abcd"]
+  time_info = sns_word_array[array_index + 1].split.map{|a|a.to_i}
+  # [1024, 3, 2]
+  word_hash[index] = {id: index , how_word: word_info[0].to_i, word: word_info[1], year: time_info[0], month: time_info[1], day: time_info[2]}
+  index += 1
+  array_index += 2
+end  
+
+# word_hash=>   {1=>{id:index   :how_word=>7, :word=>"abcdefg", :year=>2016, :month=>9, :day=>18}, 
+#        2=>{id:index    :how_word=>5, :word=>"ABCDE", :year=>2018, :month=>9, :day=>16}, 
+#        3=>{id:index    :how_word=>6, :word=>"ahkldc", :year=>2016, :month=>9, :day=>17}, 
+#        4=>{id:index    :how_word=>4, :word=>"Gabd", :year=>2016, :month=>9, :day=>18}}
+
+index = 0
+match_hash = {}
+match_word_count.times do
+  match_info = match_word_array[index].split
+  # ["4", "abcd"]
+  match_hash[index] = {how_word: match_info[0].to_i, word: match_info[1]}
+  index += 1
+end  
+# {0=>{:how_word=>1, :word=>"c"}, 1=>{:how_word=>2, :word=>"ab"}}
+answer = []
+match_index = 0
+
+match_word_count.times do
+  match_word_char = match_hash[match_index][:word].chars
+  # ["a", "b"]
+  how_stop = match_word_char.length
+  stop_count = 0
+  sns_index = 1
+  how_match = 0
+  sns_word_count.times do
+    word_chars = word_hash[sns_index][:word].chars
+    # ["a", "b", "c", "d", "e", "f", "g"]
+    word_chars.each do |wo|
+      if wo == match_word_char[how_match]
+        stop_count += 1
+        how_match += 1
+      else
+        stop_count = 0
+        how_match = 0
+      end
+      if stop_count == how_stop
+        answer << word_hash[sns_index][:id]
+        break
+      end
+    end
+
+    sns_index += 1
+  end
+  match_index += 1
+end
+uniq_answer = answer.uniq
+
+answer_hash = 
+
+
+
+
+
+
+
+
+
+
+
+
+
+w = ["a","b"]
+test = ["a","c","a","b"]
+answer = []
+stop = w.length
+i = 0
+count = 0
+test.each do |tt|
+  if tt == w[i]
+    count += 1
+    i += 1
+  else
+    count = 0
+    i = 0
+  end
+  if count == stop
+    answer << 1
+    break
+  end
+end
