@@ -1,0 +1,15 @@
+勉強9月15日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    String split_word[] = word.split(" ");
+    int num = Integer.parseInt(split_word[0]);
+    int num2 = Integer.parseInt(split_word[1]);
+    int total = (num * num * num) - (num2 * num2 * num2);
+    System.out.println(num - num2);
+  }
+}
