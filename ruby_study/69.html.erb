@@ -60,7 +60,80 @@ class Main {
   }
 }
 ーーーーーーーーーーーーーーーーーー
+勉強9月17日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    if (num >= 30 && num < 35) {
+      System.out.println("M");
+    } else {
+      System.out.println(num);
+    }
+  }
+}
+
 ーーーーーーーーーーーーーーーーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char char_word [] = sc.nextLine().toCharArray();
+    int how_long = char_word.length;
+    for (int i = 0; i < how_long; i++) {
+            System.out.println("i: " + i);
+    }
+  }
+}
 ーーーーーーーーーーーーーーーーーー
+lines = $stdin.readlines.map{|word|word.chomp}
+array = lines[0].chars
+# ["p", "a", "i", "z", "a"]
+how_long = array.length
+answer = []
+hold = []
+index = 0
+how_long.times do
+  if array[index] == "a" && index < how_long - 1
+    if array[index + 1] == "t"
+      answer << "@"
+      index += 2
+    else
+      answer << array[index]
+      index += 1
+    end
+  else
+    answer << array[index]
+    index += 1
+  end
+end
+join_answer = answer.join("")
+
+puts join_answer
+
 ーーーーーーーーーーーーーーーーーー
+import java.util.Scanner;
+
+// このクラスを使いますよ、とJavaコンパイラに教えるための宣言
+import java.util.ArrayList;
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word1 = sc.nextLine();
+    String word2 = sc.nextLine();
+
+    // 動的配列（ArrayList）を作成
+    ArrayList<String> array = new ArrayList<>();
+    array.add(word1);
+    array.add(word2);
+
+    // 出力確認
+    System.out.println(array.get(0));
+    System.out.println(array.get(1));
+  }
+}
 ーーーーーーーーーーーーーーーーーー
