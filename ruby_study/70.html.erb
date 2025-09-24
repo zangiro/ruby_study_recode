@@ -56,4 +56,111 @@ class Main {
   }
 }
 
+勉強9月24日
 
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int amount = Integer.parseInt(sc.nextLine());
+    if (amount >= 1000) {
+      System.out.println(amount - 100);
+    } else {
+      System.out.println(amount);
+    }
+  }
+}
+
+ーーーーーーーーーーーーーーーーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    if (num >= 8) {
+      System.out.println("OK");
+    } else {
+      System.out.println("NG");
+    }
+  }
+}
+ーーーーーーー
+
+lines = $stdin.readlines.map{|word|word.chomp}
+array = lines[0..2].map{|a|a.to_i}
+
+p array.max
+ーーーーーーーーーーーーーーーーーー
+import java.util.Scanner;
+import java.util.ArrayList;
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+
+    // 動的配列（ArrayList）を作成
+    ArrayList<String> array = new ArrayList<>();
+    array.add(word1);
+    array.add(word2);
+
+    //System.out.println(array.get(0));
+    //System.out.println(array.get(1));
+  }
+}
+
+
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = Integer.parseInt(sc.nextLine());
+        
+        String[] words = new String[num];
+        
+        for (int i = 0; i < num; i++) {
+            words[i] = sc.nextLine();
+        }
+        
+        System.out.println(num);
+        
+        for (String word : words) {
+            System.out.println(word);
+        }
+        
+    }
+}
+ーーーーーー
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+        
+    ArrayList<Integer> numbers = new ArrayList<>();
+
+    for (int i = 0; i < 3; i++){
+      numbers.add(Integer.parseInt(sc.nextLine()));
+    }
+    int max = Collections.max(numbers);
+    System.out.println(max);
+  }
+}
+
+ーーーーー
+SELECT genre, SUM(stock_count) AS sum_stock_count
+FROM Items
+GROUP BY genre
+
+ーーーー
+SELECT *
+FROM Records
+ORDER BY temperature DESC
+
+ーーー
+SELECT I.name, O.name
+FROM Owner O
+LEFT JOIN Items I ON O.id = I.owner_id
