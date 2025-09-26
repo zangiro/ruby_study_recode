@@ -1,0 +1,41 @@
+勉強9月26日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String split_word [] = sc.nextLine().split(" ");
+    int num1 = Integer.parseInt(split_word[0]);
+    int num2 = Integer.parseInt(split_word[1]); 
+    System.out.println(num1 + num2);
+  }
+}
+
+---
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word = sc.nextLine();
+    char[] char_words = word.toCharArray();
+    if (char_words[0] == 'A') {
+      char_words[0] = 'a'; 
+    }
+  
+    String result = new String(char_words);
+    System.out.println(result);
+  }
+}
+
+----
+lines = $stdin.readlines.map{|word|word.chomp}
+array = lines[0].chars
+answer = []
+if array[0] == "A"
+  array[0] = "R"
+end
+join_array = array.join("")
+
+puts join_array
