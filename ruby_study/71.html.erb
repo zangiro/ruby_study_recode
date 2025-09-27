@@ -39,3 +39,104 @@ end
 join_array = array.join("")
 
 puts join_array
+
+ーーー
+勉強9月27日
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int num = Integer.parseInt(sc.nextLine());
+    int answer = 0;
+    while (num != 0) {
+      if (num > 0) {
+        num -= 1;
+        answer -= 1;
+      } else {
+        num += 1;
+        answer += 1;
+      }
+    }
+    System.out.println(answer);
+  }
+}
+
+ーーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String[] words = sc.nextLine().split(" ");
+    int num1 = Integer.parseInt(words[0]);
+    int num2 = Integer.parseInt(words[1]);
+    if (num1 > 5){
+      num1 = 5;
+    }
+    if (num2 > 5){
+      num2 = 5;
+    }
+    System.out.println(num1 + num2);
+  }
+}
+
+ーーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int required_time = Integer.parseInt(sc.nextLine());
+    int now_point = Integer.parseInt(sc.nextLine());
+    int need_point = 100 - now_point;
+    System.out.println(required_time * need_point);
+  }
+}
+
+ーーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int now_item = Integer.parseInt(sc.nextLine());
+    if (now_item == 0) {
+      System.out.println(1);
+    } else {
+      System.out.println(now_item * 3);
+    }
+  }
+}
+
+ーーーー
+import java.util.Scanner;
+import java.util.ArrayList;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<String> words = new ArrayList<>();
+    for (int i = 0; i < 7; i++) {
+      words.add(sc.nextLine());
+    }
+    int count = 0;
+    for (int i = 0; i < 7; i++){
+      if (words.get(i).equals("no")){
+        count += 1;
+      }
+    }
+    System.out.println(count);
+  }
+}
+
+----
+lines = $stdin.readlines.map{|word|word.chomp}
+array = lines[0..6]
+count = 0
+array.each do |arr|
+  count += 1 if arr == "no"
+end
+
+puts count
