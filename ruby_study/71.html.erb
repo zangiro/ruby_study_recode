@@ -140,3 +140,34 @@ array.each do |arr|
 end
 
 puts count
+
+ーーー
+勉強9月30日
+lines = $stdin.readlines.map{|word|word.chomp}
+bottom_area = lines[0].to_i
+array = lines[1].split.map{|a|a.to_i}
+max_num = bottom_area * array.min
+
+p max_num
+ーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int bottom_area = Integer.parseInt(sc.nextLine());
+    String split_word[] = sc.nextLine().split(" ");
+    
+    int min = Integer.parseInt(split_word[0]); // 最初の要素を初期値とする
+    
+    for (int i = 1; i < split_word.length; i++) {
+      int current = Integer.parseInt(split_word[i]);
+      if (current > min) {
+        min = current;
+      }
+    }
+    
+    System.out.println(bottom_area * min);
+  }
+}
