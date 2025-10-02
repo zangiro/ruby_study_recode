@@ -1,0 +1,42 @@
+勉強10月2日
+lines = $stdin.readlines.map{|word|word.chomp}
+ーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String split_word [] = sc.nextLine().split(" ");
+    int requited_time = Integer.parseInt(split_word[0]);
+    int minute = Integer.parseInt(split_word[1]) * 60;
+    
+    System.out.println(minute / requited_time);
+  }
+}
+
+ーーー
+import java.util.Scanner;
+import java.util.ArrayList;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Integer> array = new ArrayList<>();
+    for (int i = 0; i < 3; i++) {
+      array.add(Integer.parseInt(sc.nextLine()));
+    }
+    int check = 0;
+    for (int i = 0; i < 3; i++) {
+      if (array.get(i) < 20) {
+        check += 1;
+      }
+    }
+    
+    if (check == 0){
+      System.out.println("OK");
+    } else {
+      System.out.println("NG");
+    }
+  }
+}
