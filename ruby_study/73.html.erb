@@ -1,0 +1,82 @@
+勉強10月4日
+lines = $stdin.readlines.map{|word|word.chomp}
+ーーー
+
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String word [] = sc.nextLine().split(" ");
+    int num1 = Integer.parseInt(word[0]);
+    int num2 = Integer.parseInt(word[1]);
+
+
+    System.out.println(num1 - num2);
+  }
+}
+
+ーーー
+import java.util.Scanner;
+import java.util.ArrayList;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<String> array = new ArrayList<>();
+    for (int i = 0; i < 3; i++) {
+      array.add(sc.nextLine());
+    }
+    int max_length = 0;
+    for (int i = 0; i < 3; i++) {
+      int now_length = array.get(i).length();
+      if (max_length < now_length) {
+        max_length = now_length;
+      }
+    }
+    System.out.println(max_length);
+  }
+}
+
+ーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char char_word [] = sc.nextLine().toCharArray();
+    int count = 0;
+    for (int i = 0; i < char_word.length; i++) {
+      if (char_word[i] == 'A') {
+        count += 1;
+      }
+    }
+    System.out.println(count);
+  }
+}
+ーーー
+import java.util.Scanner;
+ 
+class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String humans = sc.nextLine();
+    String split_result [] = sc.nextLine().split(" ");
+    int pah_result = 0;
+    int rock_result = 0;
+    for (int i = 0; i < split_result.length; i++) {
+      if (split_result[i].equals("G")) {
+        int pah_result += 1
+      } else {
+        int rock_result += 1
+      }
+    }
+    if (pah_result > rock_result) {
+      System.out.println("P");
+    } else (pah_result < rock_result) {
+      System.out.println("G");
+    } else {
+      System.out.println("Draw");
+    }
+  }
+}
